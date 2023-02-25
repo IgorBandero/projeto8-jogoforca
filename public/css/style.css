@@ -2,3 +2,85 @@
   box-sizing: border-box;
 }
 
+.div-container {
+  width: 1025px;
+  height: 575px;
+  margin: 60px auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+}
+
+.div-forca {
+  width: 400px;
+}
+
+.div-forca img {
+  width: 400px;
+}
+
+.div-palavra {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: end;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.div-palavra button {
+  width: 200px;
+  height: 60px;
+  margin-top: 30px;
+  background-color: #27AE60;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.div-palavra p {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.div-letras {
+  width: 700px;
+  margin: auto auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.letters button {
+  width: 40px;
+  height: 40px;
+  margin: 6px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  align-items: center;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.disactivated {
+  background: #9FAAB5;
+  border: 1px solid #7AA7C7;
+  color: #798A9F;
+}
+
+.activated {
+  background: #E1ECF4;
+  border: 1px solid #7AA7C7;
+  color: #39739D;
+}
