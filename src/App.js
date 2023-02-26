@@ -2,6 +2,7 @@ import { useState } from "react";
 import Jogo from "./components/Jogo"
 import Letras from "./components/Letras"
 import palavras from "./palavras";
+import Chute from "./components/Chute";
 
 function App() {  
 
@@ -23,13 +24,14 @@ function App() {
   }  
 
   function iniciarJogo(){
+    let newWord = randomWord(palavras);
+    setWord(newWord);
     setClassType("activated");
     setStatusDisabledLetters(false);  
     setStatusGameWord("");
-    let newWord = randomWord(palavras);
-    setWord(newWord);
     setLettersList([]);
     setImgHangman("./assets/forca0.png");
+    setErros(0);
   }
 
   function escolheLetra(letra){
@@ -91,7 +93,6 @@ function App() {
   function finalizaJogo(numErros){
     let palavra = word;
     setDisplayedWord(palavra);
-    console.log(displayedWord);
     setLettersList([]);
     setClassType("disactivated");
     setStatusDisabledLetters(true); 
@@ -103,6 +104,17 @@ function App() {
     }
   }
 
+  function chutar(palpite){
+    if (palpite.toUpperCase().trim() === word.toUpperCase().trim()){
+      setDisplayedWord(word);
+      finalizaJogo(0);
+    }
+    else {
+      mudaImagem(6);
+      finalizaJogo(6);
+    }
+  }
+
   const [imgHangman, setImgHangman] = useState("./assets/forca0.png");
   const [classType, setClassType] = useState("disactivated");
   const [statusDisabledLetters, setStatusDisabledLetters] = useState(true);
@@ -111,12 +123,14 @@ function App() {
   const [word, setWord] = useState("");
   const [displayedWord, setDisplayedWord] = useState("");
   const [erros, setErros] = useState(0);
+  const [chute, setChute] = useState("");
 
   return (
     <div>
       <Jogo key="game" imageHangman={imgHangman} word={displayedWord} visibility={statusGameWord} 
       funcaoIniciarJogo={iniciarJogo} />
       <Letras key="letters" type={classType} status={statusDisabledLetters} clicaLetra={escolheLetra} letrasEscolhidas={lettersList} />
+      <Chute key="guess" type={classType} status={statusDisabledLetters} novoChute={chutar} />
     </div>
   );
 }
