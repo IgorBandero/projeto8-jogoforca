@@ -50,8 +50,9 @@
 }
 
 .div-letras {
-  width: 700px;
+  width: 800px;
   margin: auto auto;
+  padding-left: 100px;
   display: flex;
   flex-wrap: wrap;
 }

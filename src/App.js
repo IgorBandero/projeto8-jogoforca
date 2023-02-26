@@ -5,27 +5,46 @@ import palavras from "./palavras";
 
 function App() {
 
-  function randomWord(){
-    return "Example";
+  let novaPalavra;
+  let numLetters;
+  let emptyString = "";
+  let numErros;
+  let arrayWord;
+
+  function randomWord(lista){
+    let indice = Math.floor(Math.random() * ((palavras.length-1) + 1));
+    return lista[indice];
   }  
 
+  function iniciarJogo(){
+    setClassType("activated");
+    setStatusDisabledLetters(false);  
+    setStatusGameWord("");
+    let newWord = randomWord(palavras);
+    setWord(newWord);
+    numErros = 0;
+  }
+
   const [imgHangman, setImgHangman] = useState("./assets/forca0.png");
-  const [statusGameLetters, setStatusGame] = useState("disabled");
+  const [statusDisabledLetters, setStatusDisabledLetters] = useState(true);
   const [statusGameWord, setStatusGameWord] = useState("hidden");
   const [classType, setClassType] = useState("disactivated");
+  const [word, setWord] = useState("");
 
-  let newWord = randomWord();
-  let numLetters = newWord.length; 
-  let emptyString = "";
+  novaPalavra = word;  
+  numLetters = novaPalavra.length; 
+  emptyString = "";
  
   for(let i=0; i<numLetters; i++){
     emptyString += "_ ";
   } 
 
+  arrayWord = word.split("");
+
   return (
     <div>
-      <Jogo key="game" imageHangman={imgHangman} word={emptyString} visibility={statusGameWord}/>
-      <Letras key="letters" type={classType} status={statusGameLetters} />
+      <Jogo key="game" imageHangman={imgHangman} word={emptyString} visibility={statusGameWord} funcaoIniciarJogo={iniciarJogo} />
+      <Letras key="letters" type={classType} status={statusDisabledLetters} />
     </div>
   );
 }
