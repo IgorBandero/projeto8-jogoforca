@@ -7,7 +7,13 @@ export default function Letras(props){
         <div className="div-letras">
             <ul className="letters">
                 {alfabeto.map(function (letra){ 
-                    return (<li key={letra}><button className={props.type} disabled={props.status} >{letra.toUpperCase()}</button></li>);
+                    let type = props.type;
+                    let statusLetter = props.status;
+                    if(props.letrasEscolhidas.includes(letra)){
+                        type = "disactivated";
+                        statusLetter = true;
+                    }
+                    return (<li key={letra}><button className={type} disabled={statusLetter} onClick={() => {props.clicaLetra(letra)}} >{letra.toUpperCase()}</button></li>);
                 })}
             </ul>
         </div>
