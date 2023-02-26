@@ -29,6 +29,7 @@ function App() {
     let newWord = randomWord(palavras);
     setWord(newWord);
     setLettersList([]);
+    setImgHangman("./assets/forca0.png");
   }
 
   function escolheLetra(letra){
