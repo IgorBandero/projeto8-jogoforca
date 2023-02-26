@@ -13,7 +13,7 @@ export default function Letras(props){
                         type = "disactivated";
                         statusLetter = true;
                     }
-                    return (<li key={letra}><button className={type} disabled={statusLetter} onClick={() => {props.clicaLetra(letra)}} >{letra.toUpperCase()}</button></li>);
+                    return (<li key={letra}><button data-test="letter" className={type} disabled={statusLetter} onClick={() => {props.clicaLetra(letra)}} >{letra.toUpperCase()}</button></li>);
                 })}
             </ul>
         </div>
