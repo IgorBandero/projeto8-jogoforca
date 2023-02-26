@@ -7,7 +7,7 @@ export default function Jogo(props){
            </div>
            <div className="div-palavra">
                 <button> Escolher palavra </button>
-                <p> {props.word} </p>
+                <p className={props.visibility} > {props.word} </p>
            </div>
         </div>
     )

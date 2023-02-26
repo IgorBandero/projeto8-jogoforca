@@ -40,6 +40,7 @@
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .div-palavra p {
@@ -71,6 +72,7 @@
   align-items: center;
   text-align: center;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .disactivated {
@@ -83,4 +85,8 @@
   background: #E1ECF4;
   border: 1px solid #7AA7C7;
   color: #39739D;
+}
+
+.hidden {
+  display: none;
 }

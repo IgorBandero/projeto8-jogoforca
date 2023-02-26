@@ -7,7 +7,7 @@ export default function Letras(props){
         <div className="div-letras">
             <ul className="letters">
                 {alfabeto.map(function (letra){ 
-                    return (<li key={letra}><button className="disactivated">{letra.toUpperCase()}</button></li>);
+                    return (<li key={letra}><button className={props.type} {...props.status}>{letra.toUpperCase()}</button></li>);
                 })}
             </ul>
         </div>
