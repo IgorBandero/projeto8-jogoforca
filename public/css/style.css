@@ -3,7 +3,7 @@
 }
 
 .div-container {
-  width: 1025px;
+  width: 1050px;
   height: 575px;
   margin: 60px auto;
   display: flex;
@@ -90,4 +90,12 @@
 
 .hidden {
   display: none;
+}
+
+.ganhou {
+  color: green;
+}
+
+.perdeu {
+  color: red;
 }

@@ -49,6 +49,7 @@ function App() {
     let novaString = "";
     let erro = true;
     let numErros = 0;
+    let numLetrasOcultas = 0;
 
     for (let i=0; i<arrayWord.length; i++){
       if (letra === arrayWord[i]){
@@ -64,14 +65,41 @@ function App() {
     }
 
     for(let i=0; i<atualizaPalavra.length; i++){
+      if (atualizaPalavra[i] === "_"){
+        numLetrasOcultas++;
+      }
       novaString += atualizaPalavra[i] + " ";
     } 
+    if (numErros === 6){
+      novaString = word;
+    }
     setDisplayedWord(novaString);
+    if (numLetrasOcultas === 0){
+      setTimeout(finalizaJogo(numErros), 500);
+    }
   }
 
   function mudaImagem(numErros){
     let imagem = "./assets/forca" + numErros + ".png";
     setImgHangman(imagem);
+    if (numErros === 6){
+      setTimeout(finalizaJogo(numErros), 500);
+    }
+  }
+
+  function finalizaJogo(numErros){
+    let palavra = word;
+    setDisplayedWord(palavra);
+    console.log(displayedWord);
+    setLettersList([]);
+    setClassType("disactivated");
+    setStatusDisabledLetters(true); 
+    if (numErros === 6){
+      setStatusGameWord("perdeu");
+    }
+    else {
+      setStatusGameWord("ganhou");
+    }
   }
 
   const [imgHangman, setImgHangman] = useState("./assets/forca0.png");
