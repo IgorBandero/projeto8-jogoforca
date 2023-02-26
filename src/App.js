@@ -48,6 +48,7 @@ function App() {
 
   function verificaLetra(letra){
     let arrayWord = word.split("");
+    let arraySemAcento = removerAcentos(arrayWord);
     let atualizaPalavra = (displayedWord.trim()).split(" ");
     let novaString = "";
     let erro = true;
@@ -55,9 +56,9 @@ function App() {
     let numLetrasOcultas = 0;
 
     for (let i=0; i<arrayWord.length; i++){
-      if (letra === arrayWord[i]){
+      if (letra === arraySemAcento[i]){
         erro = false;
-        atualizaPalavra[i] = letra; 
+        atualizaPalavra[i] = arrayWord[i]; 
       }
     }
 
@@ -105,7 +106,21 @@ function App() {
   }
 
   function chutar(palpite){
-    if (palpite.toUpperCase().trim() === word.toUpperCase().trim()){
+    let arrayPalpite = palpite.split("");
+    arrayPalpite = removerAcentos(arrayPalpite);    
+    let arrayPalavra = word.split("");
+    arrayPalavra = removerAcentos(arrayPalavra);
+    let chute = "";
+    let palavra = "";
+    
+    for (let i=0; i<arrayPalpite.length; i++){
+      chute += arrayPalpite[i];
+    }
+    for (let i=0; i<arrayPalavra.length; i++){
+      palavra += arrayPalavra[i];
+    }
+
+    if (chute.toUpperCase().trim() === palavra.toUpperCase().trim()){
       setDisplayedWord(word);
       finalizaJogo(0);
     }
@@ -113,6 +128,36 @@ function App() {
       mudaImagem(6);
       finalizaJogo(6);
     }
+  }
+
+  function removerAcentos(arrayPalavra){
+    const novoArray = [];
+    for(let i=0; i<arrayPalavra.length; i++){
+      if (arrayPalavra[i].toUpperCase() === "Á" || arrayPalavra[i].toUpperCase() === "À" ||
+          arrayPalavra[i].toUpperCase() === "Â" || arrayPalavra[i].toUpperCase() === "Ã") {
+        novoArray.push("a");
+      }
+      else if (arrayPalavra[i].toUpperCase() === "É" || arrayPalavra[i].toUpperCase() === "Ê") {
+        novoArray.push("e");
+      }
+      else if (arrayPalavra[i].toUpperCase() === "Í") {
+        novoArray.push("i");
+      }
+      else if (arrayPalavra[i].toUpperCase() === "Ó" || arrayPalavra[i].toUpperCase() === "Ô" ||
+               arrayPalavra[i].toUpperCase() === "Õ") {
+        novoArray.push("o");
+      }
+      else if (arrayPalavra[i].toUpperCase() === "Ú") {
+        novoArray.push("u");
+      }
+      else if (arrayPalavra[i].toUpperCase() === "Ç") {
+        novoArray.push("c");
+      }
+      else {
+        novoArray.push(arrayPalavra[i]);
+      }
+    }
+    return novoArray;
   }
 
   const [imgHangman, setImgHangman] = useState("./assets/forca0.png");

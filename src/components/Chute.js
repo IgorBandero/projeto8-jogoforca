@@ -6,8 +6,8 @@ export default function Chute(props){
     return (
         <div className="div-chute">
             <p> Já sei a palavra! </p>
-            <input disabled={props.status} type="text" value={chutePalavra} onChange={(event) => setValor(event.target.value)} />
-            <button className={props.type} disabled={props.status} onClick={() => {props.novoChute(valor)}}> Chutar </button>
+            <input data-test="guess-input" disabled={props.status} type="text" value={chutePalavra} onChange={(event) => setValor(event.target.value)} />
+            <button data-test="guess-button" className={props.type} disabled={props.status} onClick={() => {props.novoChute(valor)}}> Chutar </button>
         </div>
     );
 }
