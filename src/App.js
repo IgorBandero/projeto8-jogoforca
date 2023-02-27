@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Jogo from "./components/Jogo"
-import Letras from "./components/Letras"
+import Jogo from "./components/Jogo";
+import Letras from "./components/Letras";
 import palavras from "./palavras";
 import Chute from "./components/Chute";
 
@@ -25,10 +25,12 @@ function App() {
 
   function iniciarJogo(){
     let newWord = randomWord(palavras);
+    let tipo = {backgroundColor: "#E1ECF4", color: "#39739D"};
     setWord(newWord);
-    setClassType("activated");
+    setClassType(tipo);
     setStatusDisabledLetters(false);  
-    setStatusGameWord("");
+    setResultGame({color: "#000000"});
+    mostrarPalavra("inline");
     setLettersList([]);
     setImgHangman("./assets/forca0.png");
     setErros(0);
@@ -95,13 +97,13 @@ function App() {
     let palavra = word;
     setDisplayedWord(palavra);
     setLettersList([]);
-    setClassType("disactivated");
+    setClassType({backgroundColor: "#9FAAB5", color: "#798A9F"});
     setStatusDisabledLetters(true); 
     if (numErros === 6){
-      setStatusGameWord("perdeu");
+      setResultGame({color: "#FF0000"});
     }
     else {
-      setStatusGameWord("ganhou");
+      setResultGame({color: "#27AE60"});
     }
   }
 
@@ -160,20 +162,25 @@ function App() {
     return novoArray;
   }
 
+  function mostrarPalavra(display){
+    setVisibilidade(display);
+    return visibilidade;
+  }
+
   const [imgHangman, setImgHangman] = useState("./assets/forca0.png");
-  const [classType, setClassType] = useState("disactivated");
+  const [classType, setClassType] = useState({backgroundColor: "#9FAAB5", color: "#798A9F"});
   const [statusDisabledLetters, setStatusDisabledLetters] = useState(true);
   const [lettersList, setLettersList] = useState([]);
-  const [statusGameWord, setStatusGameWord] = useState("hidden");
+  const [resultGame, setResultGame] = useState({color: "#000000"});
   const [word, setWord] = useState("");
   const [displayedWord, setDisplayedWord] = useState("");
   const [erros, setErros] = useState(0);
-  const [chute, setChute] = useState("");
+  const [visibilidade, setVisibilidade] = useState("none");
 
   return (
     <div>
-      <Jogo key="game" imageHangman={imgHangman} word={displayedWord} visibility={statusGameWord} 
-      funcaoIniciarJogo={iniciarJogo} />
+      <Jogo key="game" imageHangman={imgHangman} word={displayedWord} visibility={mostrarPalavra} 
+      funcaoIniciarJogo={iniciarJogo} resultado={resultGame} />
       <Letras key="letters" type={classType} status={statusDisabledLetters} clicaLetra={escolheLetra} letrasEscolhidas={lettersList} />
       <Chute key="guess" type={classType} status={statusDisabledLetters} novoChute={chutar} />
     </div>
